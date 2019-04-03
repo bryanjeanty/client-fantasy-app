@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import DragonAvatar from "./DragonAvatar";
 
 const DEFAULT_DRAGON = {
   dragonId: "",
@@ -29,24 +30,7 @@ class Dragon extends Component {
   };
 
   render() {
-    const { dragonId, generationId, birthdate, traits } = this.state.dragon;
-    const traitList = traits.map(trait => {
-      return (
-        <li key={trait.traitType}>
-          Dragon {trait.traitType}: {trait.traitValue}
-        </li>
-      );
-    });
-
-    return (
-      <div>
-        <h1>Dragon</h1>
-        <p>Dragon ID: {dragonId}</p>
-        <p>Birthdate: {birthdate}</p>
-        <ul>{traitList}</ul>
-        <p>Generation ID: {generationId}</p>
-      </div>
-    );
+    return <DragonAvatar dragon={this.state.dragon} />;
   }
 }
 
