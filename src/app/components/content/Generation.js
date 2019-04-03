@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { generationActionCreator } from "../../actions/generation";
+import { fetchGeneration } from "../../actions/generation";
 
 const MINIMUN_DELAY = 3000;
 
@@ -46,15 +46,6 @@ const mapStateToProps = state => {
   const generation = state.generation;
 
   return { generation };
-};
-
-const fetchGeneration = () => dispatch => {
-  return fetch("http://localhost:5000/generation")
-    .then(response => response.json())
-    .then(json => {
-      dispatch(generationActionCreator(json.generation));
-    })
-    .catch(error => console.error("error", error));
 };
 
 const componentConnector = connect(

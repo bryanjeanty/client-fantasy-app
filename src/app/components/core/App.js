@@ -5,14 +5,11 @@ import thunk from "redux-thunk";
 import "../../styles/core/App.css";
 import Generation from "../content/Generation";
 import Dragon from "../content/Dragon";
-import { generationReducer } from "../../reducers/index";
+import rootReducer from "../../reducers/index";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  generationReducer,
-  composeEnhancer(applyMiddleware(thunk))
-);
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 
 class App extends Component {
   render() {
