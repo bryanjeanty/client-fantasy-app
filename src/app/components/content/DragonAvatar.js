@@ -11,6 +11,8 @@ class DragonAvatar extends Component {
       );
     });
 
+    if (!dragonId) return <div />;
+
     return (
       <div>
         <h1>Dragon</h1>

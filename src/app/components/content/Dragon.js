@@ -5,10 +5,6 @@ import DragonAvatar from "./DragonAvatar";
 import { fetchDragon } from "../../actions/dragon";
 
 class Dragon extends Component {
-  componentDidMount() {
-    this.props.fetchDragon();
-  }
-
   render() {
     return (
       <div>
@@ -21,15 +17,9 @@ class Dragon extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const dragon = state.dragon;
-
-  return { dragon };
-};
-
-const componentConnector = connect(
-  mapStateToProps,
+export default connect(
+  ({ dragon }) => {
+    return { dragon };
+  },
   { fetchDragon }
-);
-
-export default componentConnector(Dragon);
+)(Dragon);
