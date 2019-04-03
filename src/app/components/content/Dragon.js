@@ -16,10 +16,10 @@ class Dragon extends Component {
   };
 
   componentDidMount() {
-    this.fetchNewDragon();
+    this.fetchDragon();
   }
 
-  fetchNewDragon = () => {
+  fetchDragon = () => {
     fetch("http://localhost:5000/dragon/new")
       .then(response => response.json())
       .then(json => {
@@ -33,7 +33,7 @@ class Dragon extends Component {
   render() {
     return (
       <div>
-        <Button onClick={() => this.fetchNewDragon()} color="primary">
+        <Button onClick={() => this.fetchDragon()} color="primary">
           New Dragon
         </Button>
         <DragonAvatar dragon={this.state.dragon} />
