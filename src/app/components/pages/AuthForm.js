@@ -4,6 +4,8 @@ import { Button, FormGroup, Input } from "reactstrap";
 import { signup, login } from "../../actions/account.js";
 import fetchStates from "../../reducers/fetchStates";
 
+let Error = <div />;
+
 class AuthForm extends Component {
   state = {
     username: "",
@@ -22,19 +24,23 @@ class AuthForm extends Component {
     const { username, password } = this.state;
 
     this.props.signup({ username, password });
+    this.showError();
   };
 
   login = () => {
     const { username, password } = this.state;
 
     this.props.login({ username, password });
+    this.showError();
   };
 
-  get Error() {
+  showError = () => {
     if (this.props.account.status === fetchStates.error) {
-      return <div>{this.props.account.message}</div>;
+      return (Error = <div>{this.props.account.message}</div>);
+    } else {
+      return (Error = <div />);
     }
-  }
+  };
 
   render() {
     return (
@@ -62,7 +68,7 @@ class AuthForm extends Component {
           <Button onClick={this.signup}>Sign Up</Button>
         </div>
         <br />
-        {this.Error}
+        {Error}
       </div>
     );
   }

@@ -59,3 +59,12 @@ export const login = ({ username, password }) =>
     },
     SUCCESS_TYPE: ACCOUNT.FETCH_SUCCESS
   });
+
+export const fetchAuthenticated = () =>
+  fetchFromAccount({
+    endpoint: "authenticated",
+    options: {
+      credentials: "include"
+    },
+    SUCCESS_TYPE: ACCOUNT.FETCH_AUTHENTICATED_SUCCESS
+  });
