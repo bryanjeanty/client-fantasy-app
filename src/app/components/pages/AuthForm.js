@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, FormGroup, Input } from "reactstrap";
 import { signup } from "../../actions/account.js";
+import fetchStates from "../../reducers/fetchStates";
 
 class AuthForm extends Component {
   state = {
@@ -27,6 +28,12 @@ class AuthForm extends Component {
     console.log("this.state", this.state);
   };
 
+  get Error() {
+    if (this.props.account.status === fetchStates.error) {
+      return <div>{this.props.account.message}</div>;
+    }
+  }
+
   render() {
     return (
       <div>
@@ -47,15 +54,19 @@ class AuthForm extends Component {
             onChange={this.updatePassword}
           />
         </FormGroup>
-        <Button onClick={this.login}>Log In</Button>
-        <span> or </span>
-        <Button onClick={this.signup}>Sign Up</Button>
+        <div>
+          <Button onClick={this.login}>Log In</Button>
+          <span> or </span>
+          <Button onClick={this.signup}>Sign Up</Button>
+        </div>
+        <br />
+        {this.Error}
       </div>
     );
   }
 }
 
 export default connect(
-  null,
+  ({ account }) => ({ account }),
   { signup }
 )(AuthForm);
