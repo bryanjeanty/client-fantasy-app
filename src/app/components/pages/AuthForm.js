@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, FormGroup, Input } from "reactstrap";
 import { signup } from "../../actions/account.js";
+import { login } from "../../actions/account.js";
 import fetchStates from "../../reducers/fetchStates";
 
 class AuthForm extends Component {
@@ -25,7 +26,9 @@ class AuthForm extends Component {
   };
 
   login = () => {
-    console.log("this.state", this.state);
+    const { username, password } = this.state;
+
+    this.props.login({ username, password });
   };
 
   get Error() {
@@ -68,5 +71,5 @@ class AuthForm extends Component {
 
 export default connect(
   ({ account }) => ({ account }),
-  { signup }
+  { signup, login }
 )(AuthForm);
