@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Button, FormGroup, Input } from "reactstrap";
+import { signup } from "../../actions/account.js";
 
 class AuthForm extends Component {
   state = {
@@ -16,7 +18,9 @@ class AuthForm extends Component {
   };
 
   signup = () => {
-    console.log("this.state", this.state);
+    const { username, password } = this.state;
+
+    this.props.signup({ username, password });
   };
 
   login = () => {
@@ -51,4 +55,7 @@ class AuthForm extends Component {
   }
 }
 
-export default AuthForm;
+export default connect(
+  null,
+  { signup }
+)(AuthForm);

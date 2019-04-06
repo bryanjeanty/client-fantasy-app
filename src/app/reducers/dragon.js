@@ -1,4 +1,5 @@
 import { DRAGON } from "../actions/types";
+import fetchStates from "./fetchStates";
 
 const DEFAULT_DRAGON = {
   dragonId: "",
@@ -11,11 +12,19 @@ const DEFAULT_DRAGON = {
 const dragonReducer = (state = DEFAULT_DRAGON, action) => {
   switch (action.type) {
     case DRAGON.FETCH:
-      return { ...state };
+      return { ...state, status: fetchStates.fetching };
     case DRAGON.FETCH_ERROR:
-      return { ...state, message: action.message };
+      return {
+        ...state,
+        status: fetchStates.error,
+        message: action.message
+      };
     case DRAGON.FETCH_SUCCESS:
-      return { ...state, ...action.dragon };
+      return {
+        ...state,
+        status: fetchStates.success,
+        ...action.dragon
+      };
     default:
       return state;
   }
