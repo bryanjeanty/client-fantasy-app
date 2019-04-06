@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, FormGroup, Input } from "reactstrap";
-import { signup } from "../../actions/account.js";
-import { login } from "../../actions/account.js";
+import { signup, login } from "../../actions/account.js";
 import fetchStates from "../../reducers/fetchStates";
 
 class AuthForm extends Component {
