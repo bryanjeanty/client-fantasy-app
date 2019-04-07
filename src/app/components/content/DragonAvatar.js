@@ -15,7 +15,6 @@ class DragonAvatar extends Component {
 
     return (
       <div>
-        <h1>Dragon</h1>
         <p>
           Dragon ID: <strong>{dragonId}</strong>
         </p>
