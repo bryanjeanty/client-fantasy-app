@@ -6,12 +6,26 @@ import { BACKEND } from "../../../config";
 class AccountDragonRow extends Component {
   state = {
     nickname: this.props.dragon.nickname,
+    isPublic: this.props.dragon.isPublic,
+    saleValue: this.props.dragon.saleValue,
     edit: false
   };
 
   updateNickname = event => {
     this.setState({
       nickname: event.target.value
+    });
+  };
+
+  updateSaleValue = event => {
+    this.setState({
+      saleValue: event.target.value
+    });
+  };
+
+  updateIsPublic = event => {
+    this.setState({
+      isPublic: event.target.checked
     });
   };
 
@@ -25,6 +39,8 @@ class AccountDragonRow extends Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         nickname: this.state.nickname,
+        isPublic: this.state.isPublic,
+        saleValue: this.state.saleValue,
         dragonId: this.props.dragon.dragonId
       })
     })
@@ -58,7 +74,27 @@ class AccountDragonRow extends Component {
         />
         <br />
         <DragonAvatar dragon={this.props.dragon} />
-        {this.state.edit ? this.SaveButton : this.EditButton}
+        <div>
+          <span>
+            Sale Value:{" "}
+            <input
+              type="number"
+              disabled={!this.state.edit}
+              value={this.state.saleValue}
+              onChange={this.updateSaleValue}
+            />
+          </span>
+          <span>
+            Is Public:{" "}
+            <input
+              type="checkbox"
+              disabled={!this.state.edit}
+              checked={this.state.isPublic}
+              onChange={this.updateIsPublic}
+            />
+          </span>
+          {this.state.edit ? this.SaveButton : this.EditButton}
+        </div>
       </div>
     );
   }
