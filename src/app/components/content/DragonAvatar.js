@@ -6,7 +6,7 @@ class DragonAvatar extends Component {
     const traitList = traits.map(trait => {
       return (
         <li key={trait.traitType}>
-          Dragon {trait.traitType}: <strong>{trait.traitValue}</strong>
+          {trait.traitType}: <strong>{trait.traitValue}</strong>
         </li>
       );
     });
