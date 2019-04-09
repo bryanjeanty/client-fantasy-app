@@ -3,8 +3,8 @@ import { createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { Router, Switch, Route, Redirect } from "react-router-dom";
 import thunk from "redux-thunk";
-import { createBrowserHistory } from "history";
 import "../../styles/core/App.css";
+import history from "../../../history";
 import Root from "../pages/Root";
 import rootReducer from "../../reducers/index";
 import AccountDragons from "../content/AccountDragons";
@@ -16,8 +16,6 @@ export const store = createStore(
   rootReducer,
   composeEnhancer(applyMiddleware(thunk))
 );
-
-const history = createBrowserHistory();
 
 const AuthRoute = props => {
   if (!store.getState().account.loggedIn) {
